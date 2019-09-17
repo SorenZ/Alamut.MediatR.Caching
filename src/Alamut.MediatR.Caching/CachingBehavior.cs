@@ -2,7 +2,7 @@
 
 namespace Alamut.MediatR.Caching
 {
-    public class Class1
+    public class CachingBehavior
     {
     }
 }

@@ -2,6 +2,25 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    
+    <PackageId>Alamut.MediatR.Caching</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Hamed ZVand</Authors>
+    <Product>Alamut</Product>
+    <Description>MediatR pipeline caching on the top of the dotnet Core Distributed Caching</Description>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <PackageProjectUrl>https://github.com/SorenZ/Alamut.MediatR.Caching</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIconUrl>https://sorenz.github.io/alamut-256.png</PackageIconUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Alamut.Extensions.Caching" Version="0.9.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
+  </ItemGroup>
 
 </Project>
