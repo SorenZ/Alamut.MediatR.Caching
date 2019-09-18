@@ -16,12 +16,12 @@ namespace Alamut.MediatR.Caching
     public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> 
     {
         private readonly IDistributedCache _cache;
-        private readonly ILogger _logger;
+        private readonly ILoggerFactory _loggerFactory;
 
         public CachingBehavior(IDistributedCache cache, ILoggerFactory loggerFactory)
         {
             _cache = cache;
-            _logger = loggerFactory.CreateLogger("CachingBehavior");
+            _loggerFactory = loggerFactory;
         }
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, 
@@ -32,13 +32,11 @@ namespace Alamut.MediatR.Caching
                 if (cacheable.Key == null)
                 { throw new ArgumentNullException(nameof(cacheable.Key)); }
 
-                var cacheResult = await _cache.TryGetAsync<TResponse>(cacheable.Key);
+                var (exist, returnValue) = await _cache.TryGetAsync<TResponse>(cacheable.Key);
 
-                if (cacheResult.exist)
+                if (exist)
                 {
-                    _logger.LogTrace("read from cache : " + typeof(TRequest).Name);
-
-                    return cacheResult.returnValue;
+                    return returnValue;
                 }
                 else
                 {
@@ -46,7 +44,9 @@ namespace Alamut.MediatR.Caching
 
                     await _cache.SetAsync(cacheable.Key, value, cacheable.Options.GetCacheEntryOptions(), cancellationToken);
                     
-                    _logger.LogTrace("Write to cache : " + typeof(TRequest).Name);
+                    _loggerFactory
+                        .CreateLogger("CachingBehavior")
+                        .LogTrace("Write to cache : " + typeof(TRequest).Name);
 
                     return value;
                 }
