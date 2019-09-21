@@ -46,7 +46,7 @@ namespace Alamut.MediatR.Caching
                     
                     _loggerFactory
                         .CreateLogger("CachingBehavior")
-                        .LogTrace("Write to cache : " + typeof(TRequest).Name);
+                        .LogTrace($"insert to cache object {typeof(TRequest).Name} with key {cacheable.Key}");
 
                     return value;
                 }
