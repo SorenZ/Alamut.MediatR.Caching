@@ -15,19 +15,10 @@ public class MyPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, TResp
 
 **Chaching Behavior** is an implemented Behavior that Caches your response based on [ICacheable](https://github.com/SorenZ/Alamut.Abstractions/blob/master/src/Alamut.Abstractions/Caching/ICacheable.cs) request.
 
-### Installing Alamut.MediatR.Caching
-
-You should install [Alamut.MediatR.Caching with NuGet](https://www.nuget.org/packages/Alamut.MediatR.Caching):
-
-    Install-Package Alamut.MediatR.Caching
-    
-Or via the .NET Core command line interface:
-
-    dotnet add package Alamut.MediatR.Caching   
-
 ### Registring Caching Behaivor 
 You should register caching behavior in order to cache your Request. 
-If you're using ASP.NET Code DI you can install [Alamut.MediatR.Caching.DependencyInjection](https://www.nuget.org/packages/Alamut.MediatR.Caching.DependencyInjection/) package and register it by calling `services.AddCachingBehavior();` (take a look at [Startup.cs](https://github.com/SorenZ/Alamut.MediatR.Caching/blob/master/sample/Alamut.MediatR.Caching.SampleApi/Startup.cs) for more info)
+If you're using ASP.NET Code DI you can install [Alamut.MediatR.Caching.DependencyInjection](https://www.nuget.org/packages/Alamut.MediatR.Caching.DependencyInjection/) package and register it by calling `services.AddCachingBehavior();` (take a look at [Startup.cs](https://github.com/SorenZ/Alamut.MediatR.Caching/blob/master/sample/Alamut.MediatR.Caching.SampleApi/Startup.cs) for more info).  
+Alternatively you can install [Alamut.MediatR.Caching](https://www.nuget.org/packages/Alamut.MediatR.Caching/) and register the behavior `services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));`
 
 
 ### Setting up Caching
@@ -49,7 +40,7 @@ public class GetFooByIdQuery : IRequest<FooModel>, ICacheable
 ```
 By implementing ICacheable you should provide a (unique) key for the cache object and [ExpirationOptions](https://github.com/SorenZ/Alamut.Abstractions/blob/master/src/Alamut.Abstractions/Caching/ExpirationOptions.cs). 
 
-That's It! It couldn't be any easer. 
+That's It! It couldn't be any easer.   
 It's highly recommended to study the ASP.NET Web API [sample](https://github.com/SorenZ/Alamut.MediatR.Caching/tree/master/sample/Alamut.MediatR.Caching.SampleApi)
 
 
