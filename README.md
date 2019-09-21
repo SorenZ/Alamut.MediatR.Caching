@@ -49,6 +49,13 @@ public class GetFooByIdQuery : IRequest<FooModel>, ICacheable
 ```
 By implementing ICacheable you should provide a (unique) key for the cache object and [ExpirationOptions](https://github.com/SorenZ/Alamut.Abstractions/blob/master/src/Alamut.Abstractions/Caching/ExpirationOptions.cs). 
 
-That's It!  
-It couldn't be any easer.  
-It's highly recommend to study the ASP.NET Web API [sample](https://github.com/SorenZ/Alamut.MediatR.Caching/tree/master/sample/Alamut.MediatR.Caching.SampleApi)
+That's It! It couldn't be any easer. 
+It's highly recommended to study the ASP.NET Web API [sample](https://github.com/SorenZ/Alamut.MediatR.Caching/tree/master/sample/Alamut.MediatR.Caching.SampleApi)
+
+
+### Acknowledgements
+Alamut.MediatR.Caching is built using the following great open source projects and free services:
+
+* [MediatR](https://github.com/jbogard/MediatR)
+* [MessagePack](https://github.com/neuecc/MessagePack-CSharp)
+* [Alamut.Extensions.Caching](https://www.nuget.org/packages/Alamut.Extensions.Caching/)
