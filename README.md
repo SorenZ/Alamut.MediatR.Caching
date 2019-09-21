@@ -25,4 +25,30 @@ Or via the .NET Core command line interface:
 
     dotnet add package Alamut.MediatR.Caching   
 
+### Registring Caching Behaivor 
+You should register caching behavior in order to cache your Request. 
+If you're using ASP.NET Code DI you can install [Alamut.MediatR.Caching.DependencyInjection](https://www.nuget.org/packages/Alamut.MediatR.Caching.DependencyInjection/) package and register it by calling `services.AddCachingBehavior();` (take a look at [Startup.cs](https://github.com/SorenZ/Alamut.MediatR.Caching/blob/master/sample/Alamut.MediatR.Caching.SampleApi/Startup.cs) for more info)
 
+
+### Setting up Caching
+Any Request(query) that Implement [ICacheable](https://github.com/SorenZ/Alamut.Abstractions/blob/master/src/Alamut.Abstractions/Caching/ICacheable.cs) (its a part of [Alamut.Abstraction](https://github.com/SorenZ/Alamut.Abstractions) package) are eligibel to be cached.
+```csharp 
+public class GetFooByIdQuery : IRequest<FooModel>, ICacheable
+    {
+        public GetFooByIdQuery(int id)
+        {
+            Id = id;
+            Key = $"Foo_{id}";
+            Options = new ExpirationOptions(TimeSpan.FromSeconds(60));
+        }
+
+        public int Id { get;  }
+        public string Key { get; }
+        public ExpirationOptions Options { get; }
+    }
+```
+By implementing ICacheable you should provide a (unique) key for the cache object and [ExpirationOptions](https://github.com/SorenZ/Alamut.Abstractions/blob/master/src/Alamut.Abstractions/Caching/ExpirationOptions.cs). 
+
+That's It!  
+It couldn't be any easer.  
+It's highly recommend to study the ASP.NET Web API [sample](https://github.com/SorenZ/Alamut.MediatR.Caching/tree/master/sample/Alamut.MediatR.Caching.SampleApi)
