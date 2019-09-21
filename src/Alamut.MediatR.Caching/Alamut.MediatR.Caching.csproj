@@ -5,7 +5,7 @@
     <LangVersion>latest</LangVersion>
     
     <PackageId>Alamut.MediatR.Caching</PackageId>
-    <Version>0.0.1</Version>
+    <Version>0.1.0</Version>
     <Authors>Hamed ZVand</Authors>
     <Product>Alamut</Product>
     <Description>MediatR pipeline caching on the top of the dotnet Core Distributed Caching</Description>
