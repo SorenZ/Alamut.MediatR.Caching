@@ -5,7 +5,7 @@
     <LangVersion>latest</LangVersion>
     
     <PackageId>Alamut.MediatR.Caching.DependencyInjection</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>Soren ZVand</Authors>
     <Product>Alamut</Product>
     <Description>Dependency Inejection Extensions Alamut MediatR pipeline Caching</Description>
@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Alamut.MediatR.Caching" Version="0.1.0" />
+    <PackageReference Include="Alamut.MediatR.Caching" Version="0.1.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
   </ItemGroup>
 
