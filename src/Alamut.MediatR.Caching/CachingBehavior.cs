@@ -32,7 +32,7 @@ namespace Alamut.MediatR.Caching
                 if (cacheable.Key == null)
                 { throw new ArgumentNullException(nameof(cacheable.Key)); }
 
-                var (exist, returnValue) = await _cache.TryGetAsync<TResponse>(cacheable.Key);
+                var (exist, returnValue) = await _cache.TryGetAsync<TResponse>(cacheable.Key, cancellationToken);
 
                 if (exist)
                 {
@@ -46,7 +46,7 @@ namespace Alamut.MediatR.Caching
                     
                     _loggerFactory
                         .CreateLogger("CachingBehavior")
-                        .LogTrace($"insert to cache object {typeof(TRequest).Name} with key {cacheable.Key}");
+                        .LogTrace($"insert to cache object {{{typeof(TRequest).Name}}} with key {{{cacheable.Key}}}");
 
                     return value;
                 }
