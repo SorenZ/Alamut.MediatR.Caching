@@ -42,6 +42,9 @@ namespace Alamut.MediatR.Caching
                 {
                     var value = await next();
 
+                    if(value == null)
+                    { return value; }
+
                     await _cache.SetAsync(cacheable.Key, value, cacheable.Options.GetCacheEntryOptions(), cancellationToken);
                     
                     _loggerFactory
